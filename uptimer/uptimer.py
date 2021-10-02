@@ -1,5 +1,6 @@
 import requests
 import click
+from time import sleep
 
 
 def check_url(url):
@@ -24,11 +25,17 @@ def colorize_status(url, status):
 
 
 @click.command()
-@click.argument("url")
-def check(url):
-    status_code = check_url(url)
-    if status_code:
-        colorize_status(url, status_code)
+@click.argument("urls", nargs=-1)
+@click.option("--daemon", "-d", default=False, is_flag=True)
+def check(urls, daemon):
+    while True:
+        for url in urls:
+            status_code = check_url(url)
+            if status_code:
+                colorize_status(url, status_code)
+        if not daemon:
+            break
+        sleep(5)
 
 
 if __name__ == "__main__":
