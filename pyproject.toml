@@ -2,18 +2,20 @@
 name = "uptimer"
 version = "0.1.0"
 description = ""
-authors = ["Lukasz Jedral <geodezja.jedral@gmail.com>"]
+authors = ["Lukasz Jedral <lukasjedral@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 click = "^8.0.1"
 requests = "^2.26.0"
 colorama = "^0.4.4"
+
+[tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
 Sphinx = "^4.2.0"
 
-[tool.poetry.dev-dependencies]
-
+[tool.poetry.scripts]
+uptimer = "uptimer.uptimer:check"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
