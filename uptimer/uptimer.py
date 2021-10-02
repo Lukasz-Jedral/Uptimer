@@ -12,16 +12,16 @@ def check_url(url):
 
 
 def colorize_status(url, status):
-    if status // 100 == 2:
-        click.secho(f"{url} -> {status}", fg="green")
-    elif status // 100 == 3:
-        click.secho(f"{url} -> {status}", fg="yellow")
-    elif status // 100 == 4:
-        click.secho(f"{url} -> {status}", fg="bright_red")
-    elif status // 100 == 5:
-        click.secho(f"{url} -> {status}", fg="red")
-    else:
-        click.secho(f"{url} -> {status}", fg="magenta")
+    # fmt: off
+    colors = {
+        2: "green",
+        3: "yellow",
+        4: "bright_red",
+        5: "red",
+    }
+    # fmt: on
+    click.secho(f"{url} -> {status}", fg=colors.get(status // 100, "magenta"))
+
 
 @click.command()
 @click.argument("url")
